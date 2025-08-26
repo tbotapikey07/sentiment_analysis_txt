@@ -372,7 +372,7 @@ def main():
                 st.error("Please enter some email content to analyze.")
 
     with col2:
-        with st.expander('About This Tool:', expanded=False):
+        with st.expander('About This Tool:', expanded=True):
             st.markdown("### ℹ️ About This Tool")
             st.markdown("**Developed By Sudhakar G**")
             st.info("""
@@ -535,4 +535,5 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
+
     main()
