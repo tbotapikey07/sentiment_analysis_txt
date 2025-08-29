@@ -9,6 +9,15 @@ import re
 # Initialize the  analyzer
 analyzer = sentiment_analysis.SentimentIntensityAnalyzer()
 
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 def preprocess_email_text(text):
     """
     Comprehensive email preprocessing to remove headers, signatures, URLs, etc.
@@ -537,3 +546,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
