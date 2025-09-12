@@ -393,7 +393,7 @@ def main():
             🔸 **Smart Preprocessing**: Removes headers, signatures, URLs, disclaimers
             
             🔸 **Scoring System**: 
-            - Positive: ≥ 0.05
+            - Positive: Comp >= 0.5 and Pos >= 0.3
             - Neutral: -0.05 to 0.05  
             - Negative: ≤ -0.05
             
@@ -546,6 +546,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
