@@ -193,7 +193,7 @@ def classify_sentiment(compound_score,pos):
     Returns:
         str: 'positive', 'neutral', or 'negative'
     """
-    if compound_score >= 0.5 and pos >= 0.5:
+    if compound_score >= 0.5 and pos >= 0.3:
         return 'positive'
     elif compound_score <= -0.05:
         return 'negative'
@@ -546,6 +546,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
