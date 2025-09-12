@@ -183,7 +183,7 @@ def preprocess_email_text(text):
     
     return text, summary
 
-def classify_sentiment(compound_score):
+def classify_sentiment(compound_score,pos):
     """
     Classify sentiment based on compound score.
     
@@ -193,7 +193,7 @@ def classify_sentiment(compound_score):
     Returns:
         str: 'positive', 'neutral', or 'negative'
     """
-    if compound_score >= 0.05:
+    if compound_score >= 0.3 and pos >= 0.3:
         return 'positive'
     elif compound_score <= -0.05:
         return 'negative'
@@ -361,7 +361,7 @@ def main():
                 if cleaned_text.strip():
                     with st.spinner("Analyzing sentiment..."):
                         vs = analyzer.polarity_scores(cleaned_text)
-                        sentiment = classify_sentiment(vs['compound'])
+                        sentiment = classify_sentiment(vs['compound'],vs['pos'])
                         
                         # Store results in session state
                         st.session_state.analysis_results = {
@@ -546,4 +546,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
