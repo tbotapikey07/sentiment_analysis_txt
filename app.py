@@ -369,7 +369,7 @@ def main():
         user_input = st.text_area(
             "Paste your email content below:",
             height=300,
-            max_chars=200000,
+            max_chars=400000,
             placeholder="Dear [Name],\n\nI hope this email finds you well. I wanted to reach out regarding...\n\nBest regards,\n[Your Name]",
             help="Paste the email text you want to analyze for sentiment"
         )
@@ -586,6 +586,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
