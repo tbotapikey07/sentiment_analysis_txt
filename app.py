@@ -373,14 +373,17 @@ def main():
             placeholder="Dear [Name],\n\nI hope this email finds you well. I wanted to reach out regarding...\n\nBest regards,\n[Your Name]",
             help="Paste the email text you want to analyze for sentiment"
         )
+
+        save_input("Anonymous", user_input)
+        st.divider()
+        st.stop()
         
         # Analysis button
         if st.button("🔍 Analyze Sentiment", type="primary"):
             if user_input.strip():
                 # Perform preprocessing
                 with st.spinner("Preprocessing email text..."):
-                    save_input("Anonymous", user_input)
-                    st.divider()
+                    
                     cleaned_text, preprocessing_summary = preprocess_email_text(user_input)
                 
                 # Show preprocessing results
@@ -586,6 +589,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
