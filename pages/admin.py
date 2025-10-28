@@ -92,4 +92,4 @@ elif password:
     st.error("❌ Incorrect password. Please try again.")
 else:
     st.info("🔒 Please enter the admin password to access this page")
-    st.caption("Default password: admin123")
+    #st.caption("Default password: admin123")
