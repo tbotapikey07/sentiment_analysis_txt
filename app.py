@@ -367,7 +367,7 @@ def main():
             if user_input.strip():
                 # Perform preprocessing
                 with st.spinner("Preprocessing email text..."):
-                    save_input("Anonymous", input_text)
+                    save_input("Anonymous", user_input)
                     st.divider()
                     cleaned_text, preprocessing_summary = preprocess_email_text(user_input)
                 
@@ -574,6 +574,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
