@@ -583,13 +583,14 @@ def main():
     st.markdown("""
     <div class="footer">
         <p>📧 Email Sentiment Analysis Tool | Built with Streamlit & Words-weightage  Sentiment Analysis</p>
-        <p>🔒 Your data is processed locally and not stored</p>
+       
     </div>
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
 
     main()
+
 
 
 
