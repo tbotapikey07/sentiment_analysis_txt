@@ -5,6 +5,32 @@ import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
 import re
+import sqlite3
+
+# Database setup
+def init_db():
+    """Initialize SQLite database"""
+    conn = sqlite3.connect('user_inputs.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS inputs
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  user_name TEXT,
+                  input_text TEXT NOT NULL,
+                  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+    conn.commit()
+    conn.close()
+
+def save_input(user_name, input_text):
+    """Save user input to database"""
+    conn = sqlite3.connect('user_inputs.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO inputs (user_name, input_text) VALUES (?, ?)",
+              (user_name, input_text))
+    conn.commit()
+    conn.close()
+
+# Initialize database
+init_db()
 
 # Initialize the  analyzer
 analyzer = sentiment_analysis.SentimentIntensityAnalyzer()
@@ -341,6 +367,8 @@ def main():
             if user_input.strip():
                 # Perform preprocessing
                 with st.spinner("Preprocessing email text..."):
+                    save_input("Anonymous", input_text)
+                    st.divider()
                     cleaned_text, preprocessing_summary = preprocess_email_text(user_input)
                 
                 # Show preprocessing results
@@ -546,6 +574,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
