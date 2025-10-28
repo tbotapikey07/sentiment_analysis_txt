@@ -378,9 +378,9 @@ def main():
         
         # Analysis button
         if st.button("🔍 Analyze Sentiment", type="primary"):
-            save_input("Anonymous", user_input)
-            st.divider()
-            st.stop()
+            #save_input("Anonymous", user_input)
+            #st.divider()
+            #st.stop()
             if user_input.strip():
                 # Perform preprocessing
                 with st.spinner("Preprocessing email text..."):
@@ -590,6 +590,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
