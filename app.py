@@ -21,13 +21,24 @@ def init_db():
     conn.close()
 
 def save_input(user_name, input_text):
-    """Save user input to database"""
-    conn = sqlite3.connect('user_inputs.db')
-    c = conn.cursor()
-    c.execute("INSERT INTO inputs (user_name, input_text) VALUES (?, ?)",
-              (user_name, input_text))
-    conn.commit()
-    conn.close()
+    """Save user input to database with optimization for large text"""
+    try:
+        conn = sqlite3.connect('user_inputs.db', timeout=30)  # Increased timeout
+        c = conn.cursor()
+        
+        # SQLite can handle large text (up to ~1GB), but we'll be safe
+        if len(input_text) > 1000000:  # 1MB limit
+            raise ValueError("Text is too large (max 1MB)")
+        
+        c.execute("INSERT INTO inputs (user_name, input_text) VALUES (?, ?)",
+                  (user_name, input_text))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        if conn:
+            conn.close()
+        raise e
 
 # Initialize database
 init_db()
@@ -358,6 +369,7 @@ def main():
         user_input = st.text_area(
             "Paste your email content below:",
             height=300,
+            max_chars=200000,
             placeholder="Dear [Name],\n\nI hope this email finds you well. I wanted to reach out regarding...\n\nBest regards,\n[Your Name]",
             help="Paste the email text you want to analyze for sentiment"
         )
@@ -574,6 +586,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
