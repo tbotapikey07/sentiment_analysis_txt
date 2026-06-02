@@ -1,0 +1,3 @@
+cmd : python bulk_csv_sentiment_analysis.py --input input_email_txt.csv --output output.csv --column email_text
+
+pip install pandas numpy matplotlib seaborn wordcloud scikit-learn openpyxl nltk
